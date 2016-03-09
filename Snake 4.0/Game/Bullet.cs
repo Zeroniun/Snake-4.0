@@ -10,17 +10,25 @@ namespace Snake_4._0.Game
     public class Bullet
     {
         Point Aim;
-        int Time = 0;
+
 
         public Bullet(Point aim)
         {
             Aim = aim;
         }
 
-        public void Draw(Graphics g, int X, int Y)
+        int time = 0;
+        public int Time
         {
-            g.DrawLine(Pens.Red, X, Y, Aim.X, Aim.Y);
-            Time++;
+            get { return time; }
+            set { time = value; }
         }
+
+        public void Draw(Graphics g, int x, int y)
+        {
+            g.DrawLine(Pens.Red, x, y, Aim.X, Aim.Y);
+            time++;
+        }
+
     }
 }

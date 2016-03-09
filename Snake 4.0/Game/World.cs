@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Snake_4._0.Game
 {
@@ -11,6 +12,7 @@ namespace Snake_4._0.Game
     {
         private static World instance;
         private Size WorldSize;
+        int time = 10;
         public bool ShootClick { get; set; }
 
         public Point ShootLocation { get; set; }
@@ -32,23 +34,29 @@ namespace Snake_4._0.Game
 
         }
 
-        public void Update()
+        public void Update(Form1 form)
         {
+            
             instance.Player.Move(WorldSize);
-            if (ShootClick)
+            if (ShootClick && time >= 50)
             {
+                World.Instance.ShootLocation = form.PointToClient(Cursor.Position);
                 instance.Gun.Shoot(ShootLocation);
+                time = 0;
             }
+            time++;
 
         }
 
         public void Draw(Graphics g)
         {
-            Player.Draw_Player(g);
-            foreach (Bullet Bullet in Gun.Bullets)
+            
+            for (int i = 0; i < instance.Gun.Bullets.Count; i++)
             {
-                Bullet.Draw(g, Player.LocationX,Player.LocationY);
+                instance.Gun.Bullets[i].Draw(g, Player.LocationX, Player.LocationY);
+                instance.Gun.RemoveBullet(i);
             }
+            Player.Draw_Player(g);
         }
 
         public Player Player { get; private set; }

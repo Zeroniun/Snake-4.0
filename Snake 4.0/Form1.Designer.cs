@@ -44,6 +44,7 @@
             this.PB_Game.TabStop = false;
             this.PB_Game.Paint += new System.Windows.Forms.PaintEventHandler(this.PB_Game_Paint);
             this.PB_Game.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PB_Game_MouseDown);
+            this.PB_Game.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PB_Game_MouseUp);
             // 
             // TM_Update
             // 

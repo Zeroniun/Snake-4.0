@@ -49,8 +49,7 @@ namespace Snake_4._0.Game
 
         public void Draw_Player(Graphics g)
         {
-            SolidBrush myBrush = new SolidBrush(Color.Black);
-            g.FillEllipse(myBrush, LocationX - 10, LocationY - 10, 20, 20);
+            g.FillEllipse(Brushes.Black, LocationX - 10, LocationY - 10, 20, 20);
         }
     }
 }

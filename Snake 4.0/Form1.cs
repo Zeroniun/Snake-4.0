@@ -22,7 +22,7 @@ namespace Snake_4._0
 
         private void TM_Update_Tick(object sender, EventArgs e)
         {
-            World.Instance.Update();
+            World.Instance.Update(this);
             PB_Game.Refresh();
         }
 
@@ -79,8 +79,12 @@ namespace Snake_4._0
 
         private void PB_Game_MouseDown(object sender, MouseEventArgs e)
         {
-            World.Instance.ShootLocation = e.Location;
             World.Instance.ShootClick = true;
+        }
+
+        private void PB_Game_MouseUp(object sender, MouseEventArgs e)
+        {
+            World.Instance.ShootClick = false;
         }
     }
 }
