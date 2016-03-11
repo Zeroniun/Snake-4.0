@@ -13,9 +13,9 @@ namespace Snake_4._0.Game
         private static World instance;
         private Size WorldSize;
         int time = 0;
-        int Firerate = 0;
+        int LastShot = 0;
         Random rnd = new Random();
-        bool GameOver = false;
+        public bool Stop = false;
 
         int iframes = 200;
         public int Iframes { get { return iframes; } set { iframes = value; } }
@@ -46,7 +46,7 @@ namespace Snake_4._0.Game
 
         public void Update(Form1 form)
         {
-            if(GameOver == false)
+            if(Stop == false)
             {
                 MoveAllEnemies();
                 instance.Player.Move(WorldSize);
@@ -57,7 +57,7 @@ namespace Snake_4._0.Game
                 PickUpGold();
 
                 time++;
-                Firerate++;
+                LastShot++;
                 Iframes++;
             }
 
@@ -65,11 +65,11 @@ namespace Snake_4._0.Game
 
         private void Shooting_Check(Form1 form)
         {
-            if (ShootClick && Firerate >= 10)
+            if (ShootClick && LastShot >= Gun.Firerate)
             {
                 Instance.ShootLocation = form.PointToClient(Cursor.Position);
                 instance.Gun.Shoot(ShootLocation, Player.LocationX, Player.LocationY);
-                Firerate = 0;
+                LastShot = 0;
             }
         }
 
@@ -82,7 +82,6 @@ namespace Snake_4._0.Game
         }
 
         public Player Player { get; private set; }
-
         public void Create_Player(Size worldSize)
         {
             WorldSize = worldSize;
@@ -90,10 +89,15 @@ namespace Snake_4._0.Game
         }
 
         public Gun Gun { get; private set; }
-
         public void Create_Gun()
         {
             Gun = new Gun();
+        }
+
+        public Shop Shop { get; private set; }
+        public void Create_Shop()
+        {
+            Shop = new Shop();
         }
 
         private Point RandomEnemyLocation()
@@ -187,7 +191,7 @@ namespace Snake_4._0.Game
 
                         if (Player.DeathCheck(Enemies[i].Damage))
                         {
-                            GameOver = true;
+                            Stop = true;
                             MessageBox.Show("Game Over");
                             break;
                         }

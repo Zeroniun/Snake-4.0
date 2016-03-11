@@ -20,8 +20,8 @@ namespace Snake_4._0.Game
 
         public void Draw(Graphics g)
         {
-            g.FillEllipse(Brushes.Gold, LocationX, LocationY, 10, 10);
-            g.DrawEllipse(Pens.Black, LocationX, LocationY, 10, 10);
+            g.FillEllipse(Brushes.Gold, LocationX, LocationY, 8, 8);
+            g.DrawEllipse(Pens.Black, LocationX, LocationY, 8, 8);
         }
 
 

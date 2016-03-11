@@ -27,7 +27,7 @@ namespace Snake_4._0.Game
             LocationY = WorldSize.Height / 2;
             Health = 5;
             Money = 0;
-            HBSize = 20;
+            HBSize = 40;
 
             UpdateHitbox();
         }
@@ -75,7 +75,7 @@ namespace Snake_4._0.Game
         private void UpdateHitbox()
         {
             PlayerHitbox = new Rectangle(LocationX - 15, LocationY - 15, 30, 30);
-            GoldPickUpHitbox = new Rectangle(LocationX - 15, LocationY - 15, HBSize, HBSize);
+            GoldPickUpHitbox = new Rectangle(LocationX - HBSize / 2, LocationY - HBSize / 2, HBSize, HBSize);
         }
 
         public bool DeathCheck(int Damage)

@@ -16,8 +16,7 @@ namespace Snake_4._0
         public Form1()
         {
             InitializeComponent();
-            World.Instance.Create_Player(PB_Game.Size);
-            World.Instance.Create_Gun();
+            CreateAll();
         }
 
         private void TM_Update_Tick(object sender, EventArgs e)
@@ -54,9 +53,9 @@ namespace Snake_4._0
                 World.Instance.Player.Up = true;
             }
 
-            if (e.KeyCode == Keys.P)
+            if (e.KeyCode == Keys.Space)
             {
-                //open shop in shop class
+                World.Instance.Shop.Open_Shop(this.Gb_Shop);
             }
         }
 
@@ -91,6 +90,18 @@ namespace Snake_4._0
         private void PB_Game_MouseUp(object sender, MouseEventArgs e)
         {
             World.Instance.ShootClick = false;
+        }
+
+        private void CreateAll()
+        {
+            World.Instance.Create_Player(PB_Game.Size);
+            World.Instance.Create_Gun();
+            World.Instance.Create_Shop();
+        }
+
+        private void Bt_CloseShop_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Close_Shop(this.Gb_Shop);
         }
     }
 }

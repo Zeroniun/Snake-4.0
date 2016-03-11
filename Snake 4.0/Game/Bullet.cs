@@ -14,7 +14,7 @@ namespace Snake_4._0.Game
         float xpos;
         float ypos;
         double angleInDegrees;
-        int speed = 6;
+        int speed = 5;
         int deltaY;
         int deltaX;
 

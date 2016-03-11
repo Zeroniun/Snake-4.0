@@ -10,16 +10,17 @@ namespace Snake_4._0.Game
     public class Gun
     {
         public List<Bullet> Bullets = new List<Bullet>();
+        public int Firerate { get; set; }
 
         public Gun()
         {
-
+            Firerate = 30;
         }
 
         public void Shoot(Point Aim, int X, int Y)
         {
             Random rnd = new Random();
-            Aim = new Point(Aim.X + rnd.Next(-20, 20), Aim.Y + rnd.Next(-20, 20));
+            Aim = new Point(Aim.X + rnd.Next(-30, 30), Aim.Y + rnd.Next(-30, 30));
             Bullets.Add(new Bullet(Aim, X, Y));
         }
 
