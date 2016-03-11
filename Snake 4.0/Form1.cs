@@ -52,6 +52,11 @@ namespace Snake_4._0
             {
                 World.Instance.Player.Up = true;
             }
+
+            if (e.KeyCode == Keys.P)
+            {
+                //open shop in shop class
+            }
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)

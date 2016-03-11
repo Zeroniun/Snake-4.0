@@ -39,7 +39,7 @@
             this.PB_Game.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PB_Game.Location = new System.Drawing.Point(0, 0);
             this.PB_Game.Name = "PB_Game";
-            this.PB_Game.Size = new System.Drawing.Size(683, 557);
+            this.PB_Game.Size = new System.Drawing.Size(984, 711);
             this.PB_Game.TabIndex = 0;
             this.PB_Game.TabStop = false;
             this.PB_Game.Paint += new System.Windows.Forms.PaintEventHandler(this.PB_Game_Paint);
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 557);
+            this.ClientSize = new System.Drawing.Size(984, 711);
             this.Controls.Add(this.PB_Game);
             this.Name = "Form1";
             this.Text = "Form1";
