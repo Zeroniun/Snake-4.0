@@ -16,16 +16,16 @@ namespace Snake_4._0.Game
 
         }
 
-        public void Shoot(Point Aim)
+        public void Shoot(Point Aim, int X, int Y)
         {
             Random rnd = new Random();
             Aim = new Point(Aim.X + rnd.Next(-20, 20), Aim.Y + rnd.Next(-20, 20));
-            Bullets.Add(new Bullet(Aim));
+            Bullets.Add(new Bullet(Aim, X, Y));
         }
 
         public void RemoveBullet(int i)
         {
-            if (Bullets[i].Time >= 10)
+            if (Bullets[i].Time >= 50)
                 {
                     Bullets.Remove(Bullets[i]);
                 }

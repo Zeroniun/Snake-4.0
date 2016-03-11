@@ -14,8 +14,8 @@ namespace Snake_4._0.Game
         public int Health { get; set; }
         public int Damage { get; set; }
         public int KillReward { get; set; }
-
-        private int moveSpeed = 1;
+        public Rectangle Hitbox { get; private set; }
+        private int moveSpeed = 2;
         private int MoveSpeed
         {
             get { return moveSpeed; }
@@ -26,6 +26,7 @@ namespace Snake_4._0.Game
         {
             LocationX = Location.X;
             LocationY = Location.Y;
+            Hitbox = new Rectangle(LocationX - 10, LocationY - 10, 20, 20);
         }
 
         public void Move(int X, int Y)
@@ -58,6 +59,7 @@ namespace Snake_4._0.Game
         public void Draw_Enemy(Graphics g)
         {
             g.FillEllipse(Brushes.Green, LocationX - 10, LocationY - 10, 20, 20);
+            Hitbox = new Rectangle(LocationX - 10, LocationY - 10, 20, 20);
         }
     }
 }

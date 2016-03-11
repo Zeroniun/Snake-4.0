@@ -54,10 +54,10 @@ namespace Snake_4._0.Game
 
         private void Shooting_Check(Form1 form)
         {
-            if (ShootClick && Firerate >= 50)
+            if (ShootClick && Firerate >= 30)
             {
                 Instance.ShootLocation = form.PointToClient(Cursor.Position);
-                instance.Gun.Shoot(ShootLocation);
+                instance.Gun.Shoot(ShootLocation, Player.LocationX, Player.LocationY);
                 Firerate = 0;
             }
         }
@@ -135,7 +135,7 @@ namespace Snake_4._0.Game
         {
             for (int i = 0; i < instance.Gun.Bullets.Count; i++)
             {
-                instance.Gun.Bullets[i].Draw(g, Player.LocationX, Player.LocationY);
+                instance.Gun.Bullets[i].Draw(g);
                 instance.Gun.RemoveBullet(i);
             }
         }
