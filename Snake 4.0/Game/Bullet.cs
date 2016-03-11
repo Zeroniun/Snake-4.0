@@ -14,20 +14,19 @@ namespace Snake_4._0.Game
         float xpos;
         float ypos;
         double angleInDegrees;
-        int speed = 5;
+        int speed, damage;
         int deltaY;
         int deltaX;
 
-        private int damage = 1;
-        public int Damage { get { return damage; } private set { damage = value; } }
-
-        public Bullet(Point aim, int x, int y)
+        public Bullet(Point aim, int x, int y, int _damage, int _speed)
         {
             Aim = aim;
             xpos = x;
             ypos = y;
             deltaY = Aim.Y - y;
             deltaX = Aim.X - x;
+            damage = _damage;
+            speed = _speed;
         }
 
         int time = 0;
@@ -58,7 +57,7 @@ namespace Snake_4._0.Game
             {
                 if (Enemies[i].Hitbox.Contains(new Point(Convert.ToInt32(xpos), Convert.ToInt32(ypos))))
                 {
-                    if (Enemies[i].DeathCheck(Damage))
+                    if (Enemies[i].DeathCheck(damage))
                     {
                         Enemies[i].DropGold();
                         Enemies.Remove(Enemies[i]);

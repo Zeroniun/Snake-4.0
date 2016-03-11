@@ -13,12 +13,13 @@ namespace Snake_4._0.Game
         public int LocationY { get; set; }
         public int Health { get; set; }
         public int Money { get; set; }
+        public int Multiplier { get; set; }
         public Rectangle PlayerHitbox { get; private set; }
         public Rectangle GoldPickUpHitbox { get; private set; }
         public int HBSize { get; set; }
 
         private int moveSpeed = 3;
-        private int MoveSpeed { get { return moveSpeed;}
+        public int MoveSpeed { get { return moveSpeed;}
                                 set { moveSpeed = value; } }
 
         public Player(Size WorldSize)
@@ -28,6 +29,7 @@ namespace Snake_4._0.Game
             Health = 5;
             Money = 0;
             HBSize = 40;
+            Multiplier = 1;
 
             UpdateHitbox();
         }
