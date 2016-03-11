@@ -15,8 +15,13 @@ namespace Snake_4._0.Game
         int time = 0;
         int Firerate = 0;
         Random rnd = new Random();
+        bool GameOver = false;
+
+        int iframes = 200;
+        public int Iframes { get { return iframes; } set { iframes = value; } }
 
         List<Enemy> Enemies = new List<Enemy>();
+        public List<Gold> gold = new List<Gold>();
 
         public bool ShootClick { get; set; }
 
@@ -41,20 +46,26 @@ namespace Snake_4._0.Game
 
         public void Update(Form1 form)
         {
-            MoveAllEnemies();
-            instance.Player.Move(WorldSize);
-            Shooting_Check(form);
-            EnemySpawning();
-            CheckBullCollisions();
+            if(GameOver == false)
+            {
+                MoveAllEnemies();
+                instance.Player.Move(WorldSize);
+                Shooting_Check(form);
+                EnemySpawning();
+                CheckBullCollisions();
+                CheckEnemyPlayerCollisions();
+                PickUpGold();
 
-            time++;
-            Firerate++;
+                time++;
+                Firerate++;
+                Iframes++;
+            }
 
         }
 
         private void Shooting_Check(Form1 form)
         {
-            if (ShootClick && Firerate >= 30)
+            if (ShootClick && Firerate >= 10)
             {
                 Instance.ShootLocation = form.PointToClient(Cursor.Position);
                 instance.Gun.Shoot(ShootLocation, Player.LocationX, Player.LocationY);
@@ -67,6 +78,7 @@ namespace Snake_4._0.Game
             DrawAllBullets(g);
             Player.Draw_Player(g);
             DrawAllEnemies(g);
+            DrawAllGold(g);
         }
 
         public Player Player { get; private set; }
@@ -115,11 +127,6 @@ namespace Snake_4._0.Game
             
         }
 
-        private void AddEnemy()
-        {
-            Enemies.Add(new Enemy(RandomEnemyLocation()));
-        }
-
         private void MoveAllEnemies()
         {
             if (Enemies.Count != 0)
@@ -152,7 +159,7 @@ namespace Snake_4._0.Game
         {
             if (time >= 100)
             {
-                AddEnemy();
+                Enemies.Add(new Enemy(RandomEnemyLocation(),rnd));
                 time = 0;
             }
 
@@ -162,10 +169,53 @@ namespace Snake_4._0.Game
         {
             for (int i = 0; i < Instance.Gun.Bullets.Count; i++)
             {
-                Instance.Gun.Bullets[i].BullCollision(instance.Enemies);
+                if (Instance.Gun.Bullets[i].BullCollision(instance.Enemies))
+                {
+                    instance.Gun.Bullets.Remove(instance.Gun.Bullets[i]);
+                }
             }
         }
 
-        
+        private void CheckEnemyPlayerCollisions()
+        { if (Iframes >= 50)
+            {
+                for (int i = 0; i < Enemies.Count; i++)
+                {
+                    if (Player.CheckHitbox(Enemies[i]))
+                    {
+                        Iframes = 0;
+
+                        if (Player.DeathCheck(Enemies[i].Damage))
+                        {
+                            GameOver = true;
+                            MessageBox.Show("Game Over");
+                            break;
+                        }
+                        
+                    }
+
+                }
+            }
+        }
+
+        private void PickUpGold()
+        {
+            for(int i = 0; i < gold.Count; i++)
+            {
+                if (Player.CheckGoldPickUp(gold[i]))
+                {
+                    Player.Money++;
+                    gold.Remove(gold[i]);
+                }
+            }
+        }
+
+        private void DrawAllGold(Graphics g)
+        {
+            foreach(Gold G in gold)
+            {
+                G.Draw(g);
+            }
+        }
     }
 }

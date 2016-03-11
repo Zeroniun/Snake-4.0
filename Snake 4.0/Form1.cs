@@ -28,6 +28,7 @@ namespace Snake_4._0
 
         private void PB_Game_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             World.Instance.Draw(e.Graphics);
         }
 

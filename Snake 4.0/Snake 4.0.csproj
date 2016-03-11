@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Game\Bullet.cs" />
     <Compile Include="Game\Enemy.cs" />
+    <Compile Include="Game\Gold.cs" />
     <Compile Include="Game\Gun.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Game\Shop.cs" />
