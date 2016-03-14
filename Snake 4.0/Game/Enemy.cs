@@ -14,6 +14,7 @@ namespace Snake_4._0.Game
         public int Health { get; set; }
         public int Damage { get; set; }
         public int KillReward { get; set; }
+        public string Type { get; set; }
         public Rectangle Hitbox { get; private set; }
         private int moveSpeed = 2;
         private int MoveSpeed
@@ -24,7 +25,7 @@ namespace Snake_4._0.Game
         Random rnd;
         int Gold;
 
-        public Enemy(Point Location, Random _rnd)
+        public Enemy(Point Location, Random _rnd, string type)
         {
             LocationX = Location.X;
             LocationY = Location.Y;
@@ -33,32 +34,19 @@ namespace Snake_4._0.Game
             Damage = 3;
             rnd = _rnd;
             Gold = rnd.Next(2, 5);
+            Type = type;
         }
 
         public void Move(int X, int Y)
         {
-            // Left
-            if (LocationX > X - 13)
-            {
-                LocationX -= moveSpeed;
-            }
-            
-            // Right
-            if (LocationX < X + 13)
-            {
-                LocationX += moveSpeed;
-            }
-            
-            // UP
-            if (LocationY > Y - 13)
-            {
-                LocationY -= moveSpeed;
-            }
 
-            // Down
-            if (LocationY < Y + 13)
+            float DeltaX = X - LocationX;
+            float DeltaY = Y - LocationY;
+            float length = (float)Math.Sqrt(DeltaX * DeltaX + DeltaY * DeltaY);
+            if (length > moveSpeed)
             {
-                LocationY += moveSpeed;
+                LocationX += (int)(moveSpeed * DeltaX / length);
+                LocationY += (int)(moveSpeed * DeltaY / length);
             }
 
             UpdateHitbox();

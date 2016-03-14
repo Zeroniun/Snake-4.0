@@ -95,9 +95,9 @@ namespace Snake_4._0.Game
         }
 
         public Shop Shop { get; private set; }
-        public void Create_Shop()
+        public void Create_Shop(GroupBox Gb_Shop)
         {
-            Shop = new Shop();
+            Shop = new Shop(Gb_Shop);
         }
 
         private Point RandomEnemyLocation()
@@ -161,9 +161,14 @@ namespace Snake_4._0.Game
 
         private void EnemySpawning()
         {
-            if (time >= 100)
+            if (time >= 10)
             {
-                Enemies.Add(new Enemy(RandomEnemyLocation(),rnd));
+                string type = "Normal";
+                if (rnd.Next(1,101) <= 3)
+                {
+                    type = "Medic";
+                }
+                Enemies.Add(new Enemy(RandomEnemyLocation(),rnd, type));
                 time = 0;
             }
 
@@ -208,7 +213,7 @@ namespace Snake_4._0.Game
             {
                 if (Player.CheckGoldPickUp(gold[i]))
                 {
-                    Player.Money++;
+                    Player.Money += Player.Multiplier;
                     gold.Remove(gold[i]);
                 }
             }

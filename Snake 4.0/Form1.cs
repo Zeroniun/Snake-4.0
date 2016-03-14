@@ -55,7 +55,7 @@ namespace Snake_4._0
 
             if (e.KeyCode == Keys.Space)
             {
-                World.Instance.Shop.Open_Shop(this.Gb_Shop);
+                World.Instance.Shop.Open_Shop();
             }
         }
 
@@ -96,12 +96,47 @@ namespace Snake_4._0
         {
             World.Instance.Create_Player(PB_Game.Size);
             World.Instance.Create_Gun();
-            World.Instance.Create_Shop();
+            World.Instance.Create_Shop(this.Gb_Shop);
         }
 
         private void Bt_CloseShop_Click(object sender, EventArgs e)
         {
             World.Instance.Shop.Close_Shop(this.Gb_Shop);
+        }
+
+        private void Bt_Damage_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Buy_Upgrade("Damage");
+        }
+
+        private void Bt_BSpeed_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Buy_Upgrade("BSpeed");
+        }
+
+        private void Bt_Firerate_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Buy_Upgrade("Firerate");
+        }
+
+        private void Bt_Health_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Buy_Upgrade("Health");
+        }
+
+        private void Bt_Speed_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Buy_Upgrade("Speed");
+        }
+
+        private void Bt_PickUpRange_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Buy_Upgrade("Pickuprange");
+        }
+
+        private void Bt_GoldMultiplier_Click(object sender, EventArgs e)
+        {
+            World.Instance.Shop.Buy_Upgrade("Multiplier");
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Snake_4._0.Game
         public int LocationY { get; set; }
         public int Health { get; set; }
         public int Money { get; set; }
+        public int MaxHealth { get; set; }
         public int Multiplier { get; set; }
         public Rectangle PlayerHitbox { get; private set; }
         public Rectangle GoldPickUpHitbox { get; private set; }
@@ -26,8 +27,9 @@ namespace Snake_4._0.Game
         {
             LocationX = WorldSize.Width / 2;
             LocationY = WorldSize.Height / 2;
+            MaxHealth = 5;
             Health = 5;
-            Money = 0;
+            Money = 10000;
             HBSize = 40;
             Multiplier = 1;
 

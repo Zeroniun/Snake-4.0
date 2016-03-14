@@ -162,6 +162,7 @@
             this.Bt_GoldMultiplier.TabIndex = 12;
             this.Bt_GoldMultiplier.Text = "Upgrade";
             this.Bt_GoldMultiplier.UseVisualStyleBackColor = true;
+            this.Bt_GoldMultiplier.Click += new System.EventHandler(this.Bt_GoldMultiplier_Click);
             // 
             // Bt_PickUpRange
             // 
@@ -172,6 +173,7 @@
             this.Bt_PickUpRange.TabIndex = 11;
             this.Bt_PickUpRange.Text = "Upgrade";
             this.Bt_PickUpRange.UseVisualStyleBackColor = true;
+            this.Bt_PickUpRange.Click += new System.EventHandler(this.Bt_PickUpRange_Click);
             // 
             // Bt_Speed
             // 
@@ -182,6 +184,7 @@
             this.Bt_Speed.TabIndex = 10;
             this.Bt_Speed.Text = "Upgrade";
             this.Bt_Speed.UseVisualStyleBackColor = true;
+            this.Bt_Speed.Click += new System.EventHandler(this.Bt_Speed_Click);
             // 
             // Bt_Health
             // 
@@ -192,6 +195,7 @@
             this.Bt_Health.TabIndex = 9;
             this.Bt_Health.Text = "Upgrade";
             this.Bt_Health.UseVisualStyleBackColor = true;
+            this.Bt_Health.Click += new System.EventHandler(this.Bt_Health_Click);
             // 
             // Lb_GoldMultiplierNum
             // 
@@ -301,6 +305,7 @@
             this.Bt_Firerate.TabIndex = 8;
             this.Bt_Firerate.Text = "Upgrade";
             this.Bt_Firerate.UseVisualStyleBackColor = true;
+            this.Bt_Firerate.Click += new System.EventHandler(this.Bt_Firerate_Click);
             // 
             // Bt_BSpeed
             // 
@@ -311,6 +316,7 @@
             this.Bt_BSpeed.TabIndex = 7;
             this.Bt_BSpeed.Text = "Upgrade";
             this.Bt_BSpeed.UseVisualStyleBackColor = true;
+            this.Bt_BSpeed.Click += new System.EventHandler(this.Bt_BSpeed_Click);
             // 
             // Bt_Damage
             // 
@@ -321,6 +327,7 @@
             this.Bt_Damage.TabIndex = 6;
             this.Bt_Damage.Text = "Upgrade";
             this.Bt_Damage.UseVisualStyleBackColor = true;
+            this.Bt_Damage.Click += new System.EventHandler(this.Bt_Damage_Click);
             // 
             // Lb_FirerateNum
             // 
