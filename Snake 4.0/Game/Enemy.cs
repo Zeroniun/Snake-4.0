@@ -16,25 +16,26 @@ namespace Snake_4._0.Game
         public int KillReward { get; set; }
         public string Type { get; set; }
         public Rectangle Hitbox { get; private set; }
-        private int moveSpeed = 2;
-        private int MoveSpeed
-        {
-            get { return moveSpeed; }
-            set { moveSpeed = value; }
-        }
-        Random rnd;
+        private int moveSpeed = 3;
         int Gold;
 
-        public Enemy(Point Location, Random _rnd, string type)
+        public Enemy(Point Location, string type)
         {
             LocationX = Location.X;
             LocationY = Location.Y;
             UpdateHitbox();
             Health = 2;
             Damage = 3;
-            rnd = _rnd;
-            Gold = rnd.Next(2, 5);
+            Gold = World.rnd.Next(2, 5);
             Type = type;
+
+            if (type == "Medic")
+            {
+                Health = 5;
+                Damage = -10;
+                moveSpeed = 2;
+                Gold = 0;
+            }
         }
 
         public void Move(int X, int Y)
@@ -61,11 +62,21 @@ namespace Snake_4._0.Game
             StringSize = g.MeasureString(Health.ToString(), font);
             int SWidth = Convert.ToInt32(StringSize.Width * 0.5);
 
+            if (Type == "Medic")
+            {
+                g.FillEllipse(Brushes.White, LocationX - 10, LocationY - 10, 20, 20);
+                g.DrawLine(new Pen(Color.Red, 5), LocationX - 10, LocationY, LocationX + 10, LocationY);
+                g.DrawLine(new Pen(Color.Red, 5), LocationX, LocationY - 10, LocationX, LocationY + 10);
+            }
+            else
+            {
+                g.FillEllipse(Brushes.Green, LocationX - 10, LocationY - 10, 20, 20);
+            }
+
             g.DrawString(Health.ToString(), font, brush, LocationX - SWidth, LocationY - 10 - StringSize.Height);
-            g.FillEllipse(Brushes.Green, LocationX - 10, LocationY - 10, 20, 20);
         }
 
-        public bool DeathCheck(int Damage)
+        public bool DamageCheck(int Damage)
         {
             if (Calculate_Damage(Damage) <= 0)
             {
@@ -89,7 +100,7 @@ namespace Snake_4._0.Game
         {
             for (int i = 0; i < Gold; i++)
             {
-                Point p = new Point(rnd.Next(LocationX - 20, LocationX + 20), rnd.Next(LocationY - 20, LocationY + 20));
+                Point p = new Point(World.rnd.Next(LocationX - 20, LocationX + 20), World.rnd.Next(LocationY - 20, LocationY + 20));
                 World.Instance.gold.Add(new Gold(p));
             }
         }

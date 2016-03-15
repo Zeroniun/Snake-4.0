@@ -14,7 +14,7 @@ namespace Snake_4._0.Game
         private Size WorldSize;
         int time = 0;
         int LastShot = 0;
-        Random rnd = new Random();
+        public static Random rnd = new Random();
         public bool Stop = false;
 
         int iframes = 200;
@@ -75,7 +75,7 @@ namespace Snake_4._0.Game
 
         public void Draw(Graphics g)
         {
-            DrawAllBullets(g);
+            Gun.DrawAllBullets(g);
             Player.Draw_Player(g);
             DrawAllEnemies(g);
             DrawAllGold(g);
@@ -142,15 +142,6 @@ namespace Snake_4._0.Game
             }
         }
 
-        private void DrawAllBullets(Graphics g)
-        {
-            for (int i = 0; i < instance.Gun.Bullets.Count; i++)
-            {
-                instance.Gun.Bullets[i].Draw(g);
-                instance.Gun.RemoveBullet(i);
-            }
-        }
-
         private void DrawAllEnemies(Graphics g)
         {
             for (int i = 0; i < Enemies.Count; i++)
@@ -161,14 +152,14 @@ namespace Snake_4._0.Game
 
         private void EnemySpawning()
         {
-            if (time >= 10)
+            if (time >= 100)
             {
                 string type = "Normal";
                 if (rnd.Next(1,101) <= 3)
                 {
                     type = "Medic";
                 }
-                Enemies.Add(new Enemy(RandomEnemyLocation(),rnd, type));
+                Enemies.Add(new Enemy(RandomEnemyLocation(), type));
                 time = 0;
             }
 
@@ -200,7 +191,10 @@ namespace Snake_4._0.Game
                             MessageBox.Show("Game Over");
                             break;
                         }
-                        
+                        if (Enemies[i].Type == "Medic")
+                        {
+                            Enemies.Remove(Enemies[i]);
+                        }
                     }
 
                 }

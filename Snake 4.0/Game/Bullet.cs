@@ -57,7 +57,7 @@ namespace Snake_4._0.Game
             {
                 if (Enemies[i].Hitbox.Contains(new Point(Convert.ToInt32(xpos), Convert.ToInt32(ypos))))
                 {
-                    if (Enemies[i].DeathCheck(damage))
+                    if (Enemies[i].DamageCheck(damage))
                     {
                         Enemies[i].DropGold();
                         Enemies.Remove(Enemies[i]);

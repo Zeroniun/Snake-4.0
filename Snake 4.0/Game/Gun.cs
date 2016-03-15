@@ -35,5 +35,14 @@ namespace Snake_4._0.Game
                     Bullets.Remove(Bullets[i]);
                 }
         }
+
+        public void DrawAllBullets(Graphics g)
+        {
+            for (int i = 0; i < Bullets.Count; i++)
+            {
+                Bullets[i].Draw(g);
+                RemoveBullet(i);
+            }
+        }
     }
 }

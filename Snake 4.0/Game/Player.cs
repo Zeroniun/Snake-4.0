@@ -93,8 +93,24 @@ namespace Snake_4._0.Game
 
         private int Calculate_Damage(int Damage)
         {
-            Health -= Damage;
-            return Health;
+            if (Damage < 0)
+            {
+                if (Health - Damage > MaxHealth)
+                {
+                    Health = MaxHealth;
+                }
+                else
+                {
+                    Health -= Damage;
+                }
+                return Health;
+            }
+            else
+            {
+                Health -= Damage;
+                return Health;
+            }
+
         }
 
         public bool CheckHitbox(Enemy E)
