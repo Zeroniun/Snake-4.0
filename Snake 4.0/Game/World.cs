@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Snake_4._0.Game
 {
-    class World
+    public class World
     {
         private static World instance;
         private Size WorldSize;
@@ -152,7 +152,7 @@ namespace Snake_4._0.Game
 
         private void EnemySpawning()
         {
-            if (time >= 100)
+            if (time >= 40)
             {
                 string type = "Normal";
                 if (rnd.Next(1,101) <= 3)
@@ -177,7 +177,8 @@ namespace Snake_4._0.Game
         }
 
         private void CheckEnemyPlayerCollisions()
-        { if (Iframes >= 50)
+        {
+            if (Iframes >= 50)
             {
                 for (int i = 0; i < Enemies.Count; i++)
                 {
@@ -185,12 +186,13 @@ namespace Snake_4._0.Game
                     {
                         Iframes = 0;
 
-                        if (Player.DeathCheck(Enemies[i].Damage))
+                        if (Player.DamageCheck(Enemies[i].Damage))
                         {
                             Stop = true;
                             MessageBox.Show("Game Over");
                             break;
                         }
+
                         if (Enemies[i].Type == "Medic")
                         {
                             Enemies.Remove(Enemies[i]);

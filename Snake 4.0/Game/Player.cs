@@ -29,7 +29,7 @@ namespace Snake_4._0.Game
             LocationY = WorldSize.Height / 2;
             MaxHealth = 5;
             Health = 5;
-            Money = 10000;
+            Money = 0;
             HBSize = 40;
             Multiplier = 1;
 
@@ -78,11 +78,11 @@ namespace Snake_4._0.Game
 
         private void UpdateHitbox()
         {
-            PlayerHitbox = new Rectangle(LocationX - 15, LocationY - 15, 30, 30);
+            PlayerHitbox = new Rectangle(LocationX - 10, LocationY - 10, 20, 20);
             GoldPickUpHitbox = new Rectangle(LocationX - HBSize / 2, LocationY - HBSize / 2, HBSize, HBSize);
         }
 
-        public bool DeathCheck(int Damage)
+        public bool DamageCheck(int Damage)
         {
             if (Calculate_Damage(Damage) <= 0)
             {
@@ -115,7 +115,7 @@ namespace Snake_4._0.Game
 
         public bool CheckHitbox(Enemy E)
         {
-            if (PlayerHitbox.Contains(E.LocationX, E.LocationY))
+            if (PlayerHitbox.IntersectsWith(E.Hitbox))
             {
                 return true;
             }

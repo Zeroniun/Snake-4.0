@@ -17,7 +17,7 @@ namespace Snake_4._0.Game
         public string Type { get; set; }
         public Rectangle Hitbox { get; private set; }
         private int moveSpeed = 3;
-        int Gold;
+        private int Gold;
 
         public Enemy(Point Location, string type)
         {

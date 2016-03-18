@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Snake_4._0.Game
 {
-    class Shop
+    public class Shop
     {
 
         GroupBox GB;
